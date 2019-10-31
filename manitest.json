@@ -1,0 +1,32 @@
+{
+    // 필수
+    "manifest_version": 2 // 고정
+    "name": "안녕 웨일",
+    "version": "1.0.0",
+
+    // 추천
+    "description": "search mong",
+    "icons": {...},
+    "default_locale": "ko",
+
+    // 선택: 이 중 하나만 설정할 수 있음
+    //"browser_action": {...},
+    //"page_action": {...},
+    "sidebar_action": { //------------------------- 사이드바앱
+        "default_page": "sidebar.html",  // 필수
+        "default_icon": {                // 필수
+            "16": "images/search_mong.png"
+         },
+        "default_title": "사이드바앱",      // 선택
+        "use_navigation_bar": true       // 선택
+    }
+
+    // 그 외: 필요한 것을 추가
+    "background": {
+        "scripts": [...],
+        "page": "..."
+    },
+    "content_scripts": [...],
+    "permissions": [...],
+    ...
+}
