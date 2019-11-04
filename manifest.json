@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "웨일 전용 이미지 검색 앱",
+    "version": "1.0",
+    "description": "search mong",
+    
+    "sidebar_action": {
+        "default_page": "sidebar/sidebar.html",
+        "default_icon": "images/search_mong.png",
+        "default_title": "서치몽",
+        "use_navigation_bar": true,
+        "mobile_user_agent": true
+    },
+    "background": {
+        "scripts" : ["js/sidebar.js"]
+    },
+    "permissions": ["downloads","tabs","tapCapture","desktopCapture","clipboardRead","clipboardWrite"]
+}
