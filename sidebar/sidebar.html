@@ -2,18 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>My test page</title>
 	<link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/switch.css">
   </head>
+
   <body>
- <header>
- <h1><img alt="" id="logo" src="/images/search_mong.png" width="30px" height="30px"/>서치몽</h1>
-</header>
-<br/>
-<div id="getImg">
-<img alt="" id="mimg" src="/images/basic.jpg" width="350px" height="350px"/>
-</div>
+    <header>
+      <div class="title">
+        <h1><img src="/images/search_mong.png" alt="" id="logo" width="30px" height="30px"/>서치몽</h1>
+      </div>
+    </header>
+    <br/>
+
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+
+    <div id="getImg">
+      <img src="/images/basic.jpg" alt="" id="mimg" width="350px" height="350px"/>
+    </div>
+  <br/>
   </body>
+
   <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="/js/sidebar.js"></script>
 </html>
