@@ -1,9 +1,12 @@
 
 .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 60px;
   height: 34px;
+  left: 3px;
+  top: 15px;
+  margin-left: 15px;
 }
 .switch input {
   opacity: 0;
@@ -17,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: rgb(204,204,204);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -35,7 +38,7 @@
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #ACD3F4;
 }
 
 input:focus + .slider {
