@@ -1,0 +1,16 @@
+header {
+  background-color: lightgray;
+  text-align: center;
+}
+ body {
+    height:100%;
+    margin:0;
+    padding:0
+}
+h1 {
+    margin:0;
+    padding:0
+}
+
+
+#getImg{ text-align: center; }
