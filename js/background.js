@@ -7,9 +7,10 @@ whale.contextMenus.create({
 
 //클릭시
 function searchImg(item) {
+  var img_url= item.srcUrl;
 	whale.sidebarAction.show();
 	whale.storage.local.set({
-    message: item.srcUrl
+    message: img_url
 	}, () => {
     if (!whale.runtime.lastError) {
         whale.sidebarAction.show();
