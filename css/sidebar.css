@@ -16,15 +16,6 @@
   padding: 0;
 }
 
-div.title > img {
-  /*
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(120%,-50%);
-  vertical-align: center;
-  */
-}
-
 body {
   height:100%;
   margin:0;
@@ -41,10 +32,27 @@ body {
   -webkit-text-stroke: 1px #ffff
 }
 
-#div_img{
+.div_img {
   text-align: center;
 }
-#getImg{
+
+.getImg{
   text-align: center;
   display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.result_btn{
+  position: absolute;
+  right: 20px;
+  padding: 5px;
+}
+
+#btn_search{
+  width: 80px;
+  height: 25px;
+  font-size: 18px;
+  color: #ffff;
+  background-color: #ED6863;
 }
