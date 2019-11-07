@@ -4,14 +4,9 @@ var is_ocr = 0;
 window.addEventListener('DOMContentLoaded', () => {
     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
     whale.storage.local.get('message', storage => {
-<<<<<<< HEAD
-       if(myimage!=null&& storage.message!=null)
-            myimage.src=storage.message;
-=======
       var empty = 'chrome-extension://cibadghbkodochgapfjoginjajblkllo/images/empty_image.png'
       if(myimage.src != empty)
            myimage.src=storage.message;
->>>>>>> b6e63c1d61124b54b007e31f2a803943bef35f0d
 
         //whale.storage.local.remove(`message`);
     });
@@ -26,7 +21,18 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-<<<<<<< HEAD
+$(function(){
+  $('#checkbox[data-type=is_ocr]').on('click', function () {
+    var checked = $('#checkbox').is(":checked");
+    if(checked) {
+      is_ocr = 1;
+    }else {
+      is_ocr = 0;
+    }
+  });
+})
+
+
 var upload = document.getElementById("upload");
 var reader = new FileReader();
 
@@ -53,15 +59,3 @@ upload.addEventListener('change',function(e){
         console.log(2);
     }
 })
-=======
-$(function(){
-  $('#checkbox[data-type=is_ocr]').on('click', function () {
-    var checked = $('#checkbox').is(":checked");
-    if(checked) {
-      is_ocr = 1;
-    }else {
-      is_ocr = 0;
-    }
-  });
-})
->>>>>>> b6e63c1d61124b54b007e31f2a803943bef35f0d
