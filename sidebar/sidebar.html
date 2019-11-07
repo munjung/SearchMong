@@ -23,13 +23,18 @@
         <img src="/images/empty_image.png" alt="" id="mimg" width="350px" height="250px"/>
       </div>
     </div>
-
-    <button id="btn_search" type="submit" onclick="searchImage">검색</button>
+    <input type="file" id="upload" name="upload">
+    <button id = "fileSearch">파일 이미지</button>
+    <button id="btn_search" type="submit">검색</button>
+    <button id = "imgSearch">링크 이미지</button>
+    <input id="imgName" class="name" value="">
 
   <br/>
   </body>
-
-  <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/js/vision.js"></script>
   <script type="text/javascript" src="/js/sidebar.js"></script>
   <script type="text/javascript" src="/js/ocr.js"></script>
 </html>
