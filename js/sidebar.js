@@ -6,10 +6,10 @@ var btn_copy = document.getElementById("btn_copy");
 window.addEventListener('DOMContentLoaded', () => {
     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
     whale.storage.local.get('message', storage => {
-      var empty = 'chrome-extension://cibadghbkodochgapfjoginjajblkllo/images/empty_image.png'
-      if(myimage.src != empty)
+      //var empty = 'chrome-extension://cibadghbkodochgapfjoginjajblkllo/images/empty_image.png'
+      //if(myimage.src != empty)
+      if(storage.message != null)
            myimage.src=storage.message;
-
         //whale.storage.local.remove(`message`);
     });
 
