@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (areaName === 'local' && 'message' in changes) {
             //var myimage = document.getElementById("mimg");
             myimage.src=changes.message.newValue;
+            alert(myimage.src)
             //myimage.src = 'message';
         }
     });

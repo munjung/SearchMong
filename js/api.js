@@ -1,10 +1,14 @@
-var image_url = "https://i.ytimg.com/vi/-QgNCUjhNiY/maxresdefault.jpg";
-var image_type = "jpg";
-
+var myimage = document.getElementById("mimg");
 // 0: image_search / 1: ocr_detect
 $('#btn_search').click(function(){
 
   if(is_ocr == 1){
+    var image_url = myimage.src.toString();
+    var image_type = findImageType(image_url);
+
+    console.log('image_url: '+image_url);
+    console.log('image_type: '+image_type);
+
     $.ajax({
       method: "GET",
       async: true,
@@ -17,7 +21,8 @@ $('#btn_search').click(function(){
       }
       }).done(function( data ) {
         data = data.toString();
-        copyValue(data)
+        console.log(data);
+        //copyValue(data)
       }
     )
   }else{
@@ -29,18 +34,42 @@ $('#btn_search').click(function(){
 //작은따옴표 제거 : .replace(/'/g, "");
 //큰따옴표 제거 : .replace(/"/g, "");
 function copyValue(data){
-  data = data.replace("{","").replace("}","")
-        .replace("}","").replace("{","").split(":")[2];
-  data = data.replace("[","").replace("]","");
-  var text = data.split(",");
-  var total = '';
-  for(var i = text.length-1; i >= 0; i--) {
-    total += text[i];
-  }
-  total = total.replace("\n","").replace(/'/g, "");
-  document.getElementById("result_text").value = total;
-  var copyText = document.getElementById("result_text");
-  copyText.select();
-  document.execCommand("copy");
-  alert("복사된 문자열: " + copyText.value);
+    data = data.replace("{","").replace("}","")
+          .replace("}","").replace("{","").split(":")[2];
+    data = data.replace("[","").replace("]","");
+    var text = data.split(",");
+    var total = '';
+    for(var i = text.length-1; i >= 0; i--) {
+      total += text[i];
+    }
+    total = total.replace("\n","").replace(/'/g, "");
+    document.getElementById("result_text").value = total;
+    var copyText = document.getElementById("result_text");
+    copyText.select();
+    document.execCommand("copy");
+    alert("복사된 문자열: " + copyText.value);
+}
+
+function findImageType(image_url){
+    var type = ''
+    //이미지 주소에 확장자 있는 경우
+    if(image_url.toLowerCase().includes('jpg') || image_url.toLowerCase().includes('jpeg') )
+      type = "jpg";
+    else if(image_url.toLowerCase().includes('gif'))
+      type = "gif";
+    else if(image_url.toLowerCase().includes('png'))
+      type = "png";
+    else if(image_url.toLowerCase().includes('bmp'))
+      type = "bmp";
+    else if(image_url.toLowerCase().includes('webp'))
+      type = "webp";
+    else if(image_url.toLowerCase().includes('ico'))
+      type = "ico";
+    else{
+      var fileLength = image_url.length;
+    	var lastDot = fileName.lastIndexOf('.');
+    	var fileExtension = fileName.substring(lastDot+1, fileLength);
+    	type = fileExtension;
+    }
+    return type;
 }
