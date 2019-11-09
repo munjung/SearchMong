@@ -1,6 +1,7 @@
 var myimage = document.getElementById("mimg");
 var upload = document.getElementById("upload");
 var is_ocr = 0;
+var btn_copy = document.getElementById("btn_copy");
 
 window.addEventListener('DOMContentLoaded', () => {
     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
@@ -71,6 +72,11 @@ upload.addEventListener('change',function(e){
     }
   }
 })
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 98184f7200f7c1358d4870404c41f553df4aa9c7
 document.onpaste = function (event) {
   // use event.originalEvent.clipboard for newer chrome versions
   var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
@@ -95,6 +101,7 @@ document.onpaste = function (event) {
   {
     alert("클립보드에 이미지가 없습니다.")
   }
+<<<<<<< HEAD
 }
 // 검색 추가 결과 보이기, 숨기기
 var visible = document.getElementById("result_visible");
@@ -111,3 +118,6 @@ unvisible.addEventListener('click',function(){
   visible.style.display ='';
   unvisible.style.display ='none';
 });
+=======
+}
+>>>>>>> 98184f7200f7c1358d4870404c41f553df4aa9c7
