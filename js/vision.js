@@ -35,14 +35,14 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
   //imgBase = uploadImg.src.replace('data:image/jpeg;base64,', '');
   var p = {
     "requests":[{
-      "image":{ "content": imgBase }  ,  
+      "image":{ "content": imgBase }  ,
       "features": [{"type":"WEB_DETECTION","maxResults":10}]//---1개로 하니까 정확도 떨어짐
     }
     ]
   };
   $.ajax({
     method: "POST",
-    url: "https://vision.googleapis.com/v1/images:annotate?key=APIKEY",
+    url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
     contentType: "application/json",
     data: JSON.stringify(p),
     processData: false,
@@ -70,13 +70,13 @@ var p = {
     "image":{
       "source":{//--------------------이미지 url 경로
         "imageUri":uploadImg.src
-      }}  ,  
+      }}  ,
       "features": [{"type":"WEB_DETECTION","maxResults":1}]
     }
   ]};
   $.ajax({
     method: "POST",
-    url: "https://vision.googleapis.com/v1/images:annotate?key=APIKEY",
+    url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
     contentType: "application/json",
     data: JSON.stringify(p),
     processData: false,
@@ -95,6 +95,6 @@ var p = {
       alert("이미지 정보가 검색되지 않습니다")
       console.log(msg);
     }
-    
+
 });
 }
