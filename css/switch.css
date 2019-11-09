@@ -7,6 +7,39 @@
   right: 3px;
   margin-right: 15px;
 }
+
+#logo{
+  position: absolute;
+  display: inline-block;
+  top: 15px;
+  left: 3px;
+  width: 45px;
+  height: 45px;
+  margin-left: 15px;
+}
+
+#un_logo {
+  position: absolute;
+  display: inline-block;
+  top: 15px;
+  left: 3px;
+  width: 45px;
+  height: 45px;
+  margin-left: 15px;
+}
+
+#div_help {
+  position: absolute;
+  text-align: center;
+  display: inline-block;
+  left: 3px;
+  top: 10px;
+  font-size: 4pt;
+  width: 100px;
+  height: 40px;
+  margin-left: 45px;
+}
+
 .switch input {
   opacity: 0;
   width: 0;

@@ -118,3 +118,20 @@ unvisible.addEventListener('click',function(){
   visible.style.display ='';
   unvisible.style.display ='none';
 });
+
+//로고 클릭시 스위치 도움말 보이기, 숨기기
+var logo = document.getElementById("logo");
+var un_logo = document.getElementById("un_logo");
+var div_help = document.getElementById("div_help");
+
+logo.addEventListener('click' , function(){
+  div_help.style.display ='';
+  logo.style.display ='none';
+  un_logo.style.display ='';
+});
+
+un_logo.addEventListener('click' , function(){
+  div_help.style.display ='none';
+  logo.style.display ='';
+  un_logo.style.display ='none';
+});

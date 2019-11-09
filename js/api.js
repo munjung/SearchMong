@@ -1,8 +1,12 @@
 var myimage = document.getElementById("mimg");
+var popup = document.getElementById("myPopup");
+
 // 0: image_search / 1: ocr_detect
 $('#btn_search').click(function(){
 
   if(is_ocr == 1){
+    
+    popup.classList.toggle("show");
     var image_url = myimage.src.toString();
     var image_type = findImageType(image_url);
 

@@ -6,8 +6,16 @@
   <link rel="stylesheet" href="/css/switch.css">
   </head>
   <body>
+
     <div class="header">
-      <!-- <img src="/images/search_mong.png" alt="" id="logo" width="30px" height="20px"/> -->
+      <div class="help">
+        <img src="/images/search_mong.png" alt="" id="logo"/>
+        <img src="/images/search_mong.png" alt="" id="un_logo" style="display:none"/>
+        <div id="div_help" style="display:none">
+          <p>스위치 ON시,<br>글자 추출 가능!</p>
+        </div>
+      </div>
+
       <div class="title">
         <label class="switch">
           <input type="checkbox" id="checkbox" data-type="is_ocr">
@@ -17,14 +25,22 @@
       </div>
     </div>
 
+    <div class="progress-container">
+      <div class="progress-bar" id="myBar"></div>
+    </div>
+
+
+
     <br/>
     <div class="div_img">
       <div class="getImg">
         <img src="/images/empty_image.png" alt="" id="mimg" width="350px" height="220px"/>
+        <input type="file" id="upload" name="upload" style="display:none">
       </div>
     </div>
 
     <div class="div_search">
+
       <div class="result_btn">
         <input type="hidden" value="value" id="result_text">
         <button id="btn_search" type="submit">검색</button>
@@ -33,25 +49,20 @@
       <div class="keyword_result">
         <input id="imgName" class="name" value="추출된 키워드" type="text">
       </div>
-    </div>
 
-
-    <div>
-      <button id="result_visible" style="">관련정보 더보기▼</button>
-      <button id="result_unvisible" style="display:none">접기▲</button>
-      <div id="search_result_add" style="display:none">
-        <p id="web_entity">추가된 정보가 없습니다.</p>
+      <div class= "plus">
+        <button id="result_visible" type="button">+</button>
+        <button id="result_unvisible" style="display:none">-</button>
+        <div class="plus_content">
+          <div id="search_result_add" style="display:none">
+            <p id="web_entity">추가된 정보가 없습니다.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <br/>
-    <br/>
-    <input type="file" id="upload" name="upload" style="display:none">
-    <input id="imgName" class="name" value="">
-    <button id = "btn_search_test">임시 검색 버튼</button>
-    <br/>
-    <br/>
 
   <br/>
+
   </body>
   <script src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
