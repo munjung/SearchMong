@@ -23,6 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//switch event -> 0: image_search / 1: ocr_detect
 $(function(){
   $('#checkbox[data-type=is_ocr]').on('click', function () {
     var checked = $('#checkbox').is(":checked");
@@ -33,13 +34,14 @@ $(function(){
     }
   });
 })
+
 myimage.addEventListener('click',function(){
   upload.click();
 });
 
 var reader = new FileReader();
 
-//--reader 시작시 함수 구현 
+//--reader 시작시 함수 구현
 reader.onload = (function(){
    console.log("file upload success");
    return function(e){
@@ -59,8 +61,8 @@ upload.addEventListener('change',function(e){
    var get_file = e.target.files;
    if(get_file[0]){
     if(/^image\//.test(get_file[0].type)){//이미지 파일인 경우만 이미지 띄움
-      /* 
-            get_file[0] 을 읽어서 read 행위가 종료되면 loadend 이벤트가 트리거 되고 
+      /*
+            get_file[0] 을 읽어서 read 행위가 종료되면 loadend 이벤트가 트리거 되고
             onload 에 설정했던 return 으로 넘어간다.
             이와 함께 base64 인코딩 된 스트링 데이터가 result 속성에 담겨진다.
         */
@@ -95,7 +97,7 @@ document.onpaste = function (event) {
   }
   else
   {
-  
+
     alert("클립보드에 이미지가 없습니다.")
   }
 }
