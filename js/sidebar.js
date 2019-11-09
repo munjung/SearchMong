@@ -1,5 +1,6 @@
 var myimage = document.getElementById("mimg");
 var is_ocr = 0;
+var btn_copy = document.getElementById("btn_copy");
 
 window.addEventListener('DOMContentLoaded', () => {
     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
@@ -59,3 +60,30 @@ upload.addEventListener('change',function(e){
         console.log(2);
     }
 })
+
+
+document.onpaste = function (event) {
+  // use event.originalEvent.clipboard for newer chrome versions
+  var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
+  console.log(JSON.stringify(items)); // will give you the mime types
+  // find pasted image among pasted items
+  var blob = null;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].type.indexOf("image") === 0) {
+      blob = items[i].getAsFile();
+    }
+  }
+  // load image if there is a pasted image
+  if (blob !== null) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      console.log(event.target.result); // data url!
+      myimage.src = event.target.result;
+    };
+    reader.readAsDataURL(blob);
+  }
+  else
+  {
+    alert("클립보드에 이미지가 없습니다.")
+  }
+}
