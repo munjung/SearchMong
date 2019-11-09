@@ -148,3 +148,14 @@ body {
 .plus_content{
   padding-top: 5px;
 }
+
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+/* #myBar2 {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+} */
