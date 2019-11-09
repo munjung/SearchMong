@@ -26,17 +26,24 @@
 
     <div class="result_btn">
       <button id="btn_copy" type="submit" onclick="clipboard">붙여넣기</button>
-      <button id="btn_search" type="submit" onclick="searchImage">검색</button>
+      <button id="btn_search" type="submit">검색</button>
     </div>
     <br/>
     <br/>
+    <div>
+      <button id="result_visible" style="">관련정보 더보기▼</button>
+      <button id="result_unvisible" style="display:none">접기▲</button>
+      <div id="search_result_add" style="display:none">
+        <p id="web_entity">추가된 정보가 없습니다.</p>
+      </div>
+    </div>
     <br/>
-    <input type="file" id="upload" name="upload">
-    <button id = "fileSearch">파일 이미지</button>
-    <button id = "imgSearch">링크 이미지</button>
+    <br/>
+    <input type="file" id="upload" name="upload" style="display:none">
     <input id="imgName" class="name" value="">
-
-
+    <button id = "btn_search_test">임시 검색 버튼</button>
+    <br/>
+    <br/>
 
   <br/>
   </body>

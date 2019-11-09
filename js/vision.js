@@ -1,21 +1,32 @@
-var linkImgs = document.getElementById("imgSearch");//링크 검색 버튼
+var btn_search = document.getElementById("btn_search_test"); //이미지 검색 버튼
 var imgname = document.getElementById("imgName");//텍스트 나오는 부분
-
-var fileImgs = document.getElementById("fileSearch");//파일 검색 버튼
 var uploadImg = document.getElementById("mimg"); //이미지
-var file = document.que
+var add_result=document.getElementById("search_result_add");
 var result;
 var imgBase;
 
-linkImgs.addEventListener('click',function(){
-	visionTest1();
+
+btn_search.addEventListener('click',function(){
+  if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에만 실행 data:image/
+    imgname.value= "";
+     var imgsrc = uploadImg.src;
+//     alert(imgsrc.substring(0,10));
+     if(imgsrc.substring(0,10)!="data:image"){ // 이미지의 src가 url형태인 경우
+       visionUrl();
+        // alert("링크");
+     }else{//----------------------------------// 이미지의 src가 base64로 인코딩 된 경우
+       visionBase64();
+        // alert("파일");
+     }
+
+  }
+  else{
+    alert("파일이 업로드 되지 않았습니다.");
+    console.log("result="+imgBase);
+  }
 });
 
-fileImgs.addEventListener('click',function(){
-  visionTestBase64();
-});
-
-function visionTestBase64(){ //이미지를 base64로 변환하여 보내는 경우
+function visionBase64(){ //이미지를 base64로 변환하여 보내는 경우
 var request, output;
 if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에만 실행
   var block = uploadImg.src.split(';');
@@ -52,7 +63,7 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
     console.log("result="+imgBase);
   }
 }
-function visionTest1(){// 이미지를 url 소스로 보내는 경우
+function visionUrl(){// 이미지를 url 소스로 보내는 경우
   var request, output;
 var p = {
   "requests":[{
@@ -76,8 +87,14 @@ var p = {
       alert("이미지 전송 실패");
     }
   }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
-    result = msg.responses[0].webDetection.webEntities[0].description;
-    console.log(msg.responses[0].webDetection.webEntities[0].description);
-    imgname.value= result;
+    if(msg.responses[0].webDetection.webEntities[0].description=!null){
+      result = msg.responses[0].webDetection.webEntities[0].description;
+      console.log(msg.responses[0].webDetection.webEntities[0].description);
+      imgname.value= result;
+    }else{
+      alert("이미지 정보가 검색되지 않습니다")
+      console.log(msg);
+    }
+    
 });
 }
