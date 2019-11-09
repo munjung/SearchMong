@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
         if (areaName === 'local' && 'message' in changes) {
             //var myimage = document.getElementById("mimg");
             myimage.src=changes.message.newValue;
-            alert(myimage.src)
             //myimage.src = 'message';
         }
     });
@@ -48,6 +47,7 @@ reader.onload = (function(){
    return function(e){
       /* base64 인코딩 된 스트링 데이터 */
       myimage.src = e.target.result
+      console.log('file result: '+e.target.result);
       //console.log("="+uploadImg.src);
    }
 })()
