@@ -2,6 +2,7 @@ var btn_search = document.getElementById("btn_search"); //이미지 검색 버�
 var imgname = document.getElementById("imgName");//텍스트 나오는 부분
 var uploadImg = document.getElementById("mimg"); //이미지
 var add_result=document.getElementById("search_result_add");
+var btn_test = document.getElementById("btn_search_test");
 var result;
 var imgBase;
 
@@ -55,8 +56,10 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
     }
   }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
     result = msg.responses[0].webDetection.webEntities[0].description;
+    papagoTranslate(result)
+    add_result_entity(msg);
     console.log(msg);
-    imgname.value= result;
+    //imgname.value= result;
 });
 }
   else{
@@ -72,7 +75,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
         "source":{//--------------------이미지 url 경로
           "imageUri":uploadImg.src
         }}  ,
-        "features": [{"type":"WEB_DETECTION","maxResults":1}]
+        "features": [{"type":"WEB_DETECTION","maxResults":10}]
       }
     ]};
     $.ajax({
@@ -88,14 +91,67 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
         alert("이미지 전송 실패");
       }
     }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
-      if(msg.responses[0].webDetection.webEntities[0].description=!null){
-        result = msg.responses[0].webDetection.webEntities[0].description;
-        console.log(msg.responses[0].webDetection.webEntities[0].description);
-        imgname.value= result;
-      }else{
-        alert("이미지 정보가 검색되지 않습니다")
-        console.log(msg);
-      }
+    var enttitiy = msg;
+    if(enttitiy=!null){
+      console.log(msg);
+      result = msg.responses[0].webDetection.webEntities[0].description;
+      papagoTranslate(result)
+      add_result_entity(msg);
+    }else{
+      alert("이미지 정보가 검색되지 않습니다")
+      console.log(msg);
+    }
 
   });
+}
+function add_result_entity(msg){
+  var add="";
+  add=add+msg.responses[0].webDetection.bestGuessLabels[0].label;
+  for(var i=1;i<7;i++){
+    add=add+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+msg.responses[0].webDetection.webEntities[i].description;
+  }
+  add_result.innerHTML=add;
+
+}
+//번역 하는 곳
+function papagoTranslate(result){
+  var url = "http://ec2-15-164-97-135.ap-northeast-2.compute.amazonaws.com/searchmong/hello.py"
+  var text = result; // 번역할 문자
+  console.log("키워드 : "+text)
+  $.ajax({
+        method: 'GET',
+        data: { keyword: text, find_image:" ", tmp:"0"},
+        url: url,
+        error: function(request,status,error) {
+      alert(request.responseText)
+      console.log(request.responseText)
+    }
+    }).done(function( data ) {
+      //data = data.toString();
+      data =JSON.parse(data)
+      imgname.value=data.message.result.translatedText;
+      console.log(data)
+      findImage(data.message.result.translatedText)
+    }
+  )
+}
+function findImage(result){ //
+  var url = "http://ec2-15-164-97-135.ap-northeast-2.compute.amazonaws.com/searchmong/hello.py"
+  var text = result; // 번역할 문자
+  console.log("키워드 : "+text)
+  $.ajax({
+        method: 'GET',
+        data: { keyword: "text", find_image: text, tmp:"1"},
+        url: url,
+        error: function(request,status,error) {
+      alert(request.responseText)
+      console.log(request.responseText)
+    }
+    }).done(function( data ) {
+      //data = data.toString();
+      data =JSON.parse(data)
+      console.log(data)
+      //alert(data.message.result.translatedText)
+    }
+  )
 }
