@@ -72,11 +72,7 @@ upload.addEventListener('change',function(e){
     }
   }
 })
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 98184f7200f7c1358d4870404c41f553df4aa9c7
 document.onpaste = function (event) {
   // use event.originalEvent.clipboard for newer chrome versions
   var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
@@ -99,10 +95,11 @@ document.onpaste = function (event) {
   }
   else
   {
+  
     alert("클립보드에 이미지가 없습니다.")
   }
-<<<<<<< HEAD
 }
+
 // 검색 추가 결과 보이기, 숨기기
 var visible = document.getElementById("result_visible");
 var unvisible = document.getElementById("result_unvisible");
@@ -118,6 +115,4 @@ unvisible.addEventListener('click',function(){
   visible.style.display ='';
   unvisible.style.display ='none';
 });
-=======
 }
->>>>>>> 98184f7200f7c1358d4870404c41f553df4aa9c7
