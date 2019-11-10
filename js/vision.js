@@ -107,10 +107,11 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
     var add="";
     add=add+msg.responses[0].webDetection.bestGuessLabels[0].label;
     for(var i=1;i<7;i++){
-      add=add+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+msg.responses[0].webDetection.webEntities[i].description;
+      if(msg.responses[0].webDetection.webEntities[i]!=null){
+        add=add+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+msg.responses[0].webDetection.webEntities[i].description;
+      }
     }
     add_result.innerHTML=add;
-
   }
 //번역 하는 곳
 function papagoTranslate(result){
@@ -159,11 +160,13 @@ function img_result_load(img_data){
     alert("결과를 찾을 수 없습니다.")
   else{
   var str="";
-  for(var i=0; i<16;i++){
-    var date = img_data.documents[i].datetime
+  for(var i=0; i<30;i++){
+    var checkdata=img_data.documents[i].image_url;
+    if(checkdata !=null){
+      var date = img_data.documents[i].datetime
     var dateArray = date.split("T");
     var image_date=dateArray[0];
-    var image_src=img_data.documents[i].image_url;;
+    var image_src=img_data.documents[i].image_url;
     var image_name=img_data.documents[i].display_sitename;
     var image_link = img_data.documents[i].doc_url;
     var img_id="img_id"+i;
@@ -171,25 +174,27 @@ function img_result_load(img_data){
     str=str+
         "<div class='card_border'>"+
           "<div class='card' id='"+img_id+"'>"+
-            "<img class='card_img' src='"+image_src+"' onerror='this.src='/images/empty_image.png'' >"+
+            "<img class='card_img' src='"+image_src+"' onerror='this.src='/images/empty_image.png'' alt='Avatar'>"+
             "<div class='container1'>"+
               "<h4><b>"+image_name+"</b></h4>"+
-              "<div>"+image_date+"</div>"+
+              "<p>"+image_date+"</p>"+
               "<a href='"+"#"+"'>바로가기</a>"+
             "</div>"+
           "</div>"+
         "</div>";
-
+    }
   }
   imgresult.innerHTML=str;
-  for(var i=0; i < 16; i++ ) {
-        (function(m) {
+  for(var i=0; i < 30; i++ ) {
+    var checkdata=img_data.documents[i].image_url;
+    if(checkdata !=null){
+      (function(m) {
             document.getElementById("img_id" + m).addEventListener("click", function() {
                 var image_link = img_data.documents[m].doc_url;
                 whale.tabs.create({url: image_link});
             }, false);
         })(i);
     }
-
+    }
   }
 }
