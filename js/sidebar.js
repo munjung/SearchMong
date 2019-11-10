@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     whale.storage.local.get('message', storage => {
       //var empty = 'chrome-extension://cibadghbkodochgapfjoginjajblkllo/images/empty_image.png'
       //if(myimage.src != empty)
+      $(document).scrollTop(0);
       if(storage.message != null)
            myimage.src=storage.message;
         //whale.storage.local.remove(`message`);
@@ -15,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // 로딩 이후의 변화 대응
     whale.storage.onChanged.addListener((changes, areaName) => {
+        $(document).scrollTop(0);
         if (areaName === 'local' && 'message' in changes) {
             //var myimage = document.getElementById("mimg");
             myimage.src=changes.message.newValue;
