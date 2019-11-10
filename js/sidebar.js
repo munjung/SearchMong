@@ -36,7 +36,12 @@ $(function(){
 })
 
 myimage.addEventListener('click',function(){
-  upload.click();
+  //ocr 기능은 파일 업로드 기능 일단 보류
+  if(is_ocr == 1){
+    alert('글자 추출 기능은 파일 업로드가 불가능해요 ㅜㅜ\n오른쪽 마우스에 있는 <이미지 검색하기> 기능을 이용해주세요!');
+  }else{
+    upload.click();
+  }
 });
 
 var reader = new FileReader();
@@ -135,3 +140,26 @@ un_logo.addEventListener('click' , function(){
   logo.style.display ='';
   un_logo.style.display ='none';
 });
+
+//검색 결과 나올때까지 프로그래스바 돌리고 싶다!!
+/*
+var myProgress = document.getElementById("myProgress");
+var i = 0;
+myProgress.addEventListener('click' , function(){
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar2");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+});
+*/
