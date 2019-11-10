@@ -24,12 +24,15 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 //switch event -> 0: image_search / 1: ocr_detect
+//$('.div_search').css('display','');
 $(function(){
   $('#checkbox[data-type=is_ocr]').on('click', function () {
     var checked = $('#checkbox').is(":checked");
     if(checked) {
       is_ocr = 1;
     }else {
+      $('.div_search').css('display','');
+      $('.research_result').css('display','none');
       is_ocr = 0;
     }
   });
@@ -84,28 +87,28 @@ upload.addEventListener('change',function(e){
 document.onpaste = function (event) {
   // use event.originalEvent.clipboard for newer chrome versions
   var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
-  console.log(JSON.stringify(items)); // will give you the mime types
-  // find pasted image among pasted items
-  var blob = null;
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].type.indexOf("image") === 0) {
-      blob = items[i].getAsFile();
+  var check_image_or_text = JSON.stringify(items);
+  //이미지가 복사된 경우
+  if(check_image_or_text.indexOf("1") != -1){
+    var blob = null;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf("image") === 0) {
+        blob = items[i].getAsFile();
+      }
     }
-  }
-  // load image if there is a pasted image
-  if (blob !== null) {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-      console.log(event.target.result); // data url!
-      myimage.src = event.target.result;
-    };
-    reader.readAsDataURL(blob);
-  }
-  else
-  {
+    // load image if there is a pasted image
+    if (blob !== null) {
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        console.log(event.target.result); // data url!
+        myimage.src = event.target.result;
+      };
+      reader.readAsDataURL(blob);
+    }
+  }else{ //텍스트가 복사된 경우
 
-    alert("클립보드에 이미지가 없습니다.")
   }
+
 }
 
 // 검색 추가 결과 보이기, 숨기기

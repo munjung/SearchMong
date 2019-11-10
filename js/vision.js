@@ -167,6 +167,7 @@ function img_result_load(img_data){
     var image_name=img_data.documents[i].display_sitename;
     var image_link = img_data.documents[i].doc_url;
     var img_id="img_id"+i;
+    //style="display:none" //style='display:none'
     str=str+
         "<div class='card_border'>"+
           "<div class='card' id='"+img_id+"'>"+
@@ -178,7 +179,7 @@ function img_result_load(img_data){
             "</div>"+
           "</div>"+
         "</div>";
-   
+
   }
   imgresult.innerHTML=str;
   for(var i=0; i < 16; i++ ) {
@@ -189,6 +190,6 @@ function img_result_load(img_data){
             }, false);
         })(i);
     }
-  
+
   }
 }

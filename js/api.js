@@ -1,13 +1,16 @@
 var myimage = document.getElementById("mimg");
 var textarea = document.getElementById("textarea");
-//var popup = document.getElementById("myPopup");
 
 // 0: image_search / 1: ocr_detect
+
+//url이 너무 긴경우 예외처리 해야함
 $('#btn_search').click(function(){
 
   if(is_ocr == 1){
 
-    //popup.classList.toggle("show");
+    $('.card_border').css('display','none');
+    $('.div_search').css('display','none');
+
     var image_url = myimage.src.toString();
     var image_type = findImageType(image_url);
 
@@ -31,6 +34,7 @@ $('#btn_search').click(function(){
       }
     )
   }else{
+    $('.div_search').css('display','');
     $('.research_result').css('display','none');
   }
 
@@ -48,14 +52,15 @@ function copyValue(data){
       total += text[i];
     }
     total = total.replace("\n","").replace(/'/g, "");
+    alert('글자 추출 완료!');
     document.getElementById("result_text").value = total;
     var copyText = document.getElementById("result_text");
-    copyText.select();
-    document.execCommand("copy");
-    alert('글자 추출 완료!');
-    console.log(copyText.value);
-    $('.research_result').css('display','');
     $('#textarea').val(copyText.value);
+    $('.research_result').css('display','');
+
+    // var copyText = document.getElementById("result_text");
+    // copyText.select();
+    // document.execCommand("copy");
 }
 
 function findImageType(image_url){
