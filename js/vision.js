@@ -171,7 +171,7 @@ function img_result_load(img_data){
     str=str+
         "<div class='card_border'>"+
           "<div class='card' id='"+img_id+"'>"+
-            "<img class='card_img' src='"+image_src+"' alt='Avatar'>"+
+            "<img class='card_img' src='"+image_src+"' onerror='this.src='/images/empty_image.png'' alt='Avatar'>"+
             "<div class='container1'>"+
               "<h4><b>"+image_name+"</b></h4>"+
               "<div>"+image_date+"</div>"+

@@ -87,29 +87,28 @@ upload.addEventListener('change',function(e){
 document.onpaste = function (event) {
   // use event.originalEvent.clipboard for newer chrome versions
   var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
-  var check_image_or_text = JSON.stringify(items);
-  //이미지가 복사된 경우
-  if(check_image_or_text.indexOf("1") != -1){
-    var blob = null;
-    for (var i = 0; i < items.length; i++) {
-      if (items[i].type.indexOf("image") === 0) {
-        blob = items[i].getAsFile();
-      }
+  console.log(JSON.stringify(items)); // will give you the mime types
+  // find pasted image among pasted items
+  var blob = null;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].type.indexOf("image") === 0) {
+      blob = items[i].getAsFile();
     }
-    // load image if there is a pasted image
-    if (blob !== null) {
-      var reader = new FileReader();
-      reader.onload = function(event) {
-        console.log(event.target.result); // data url!
-        myimage.src = event.target.result;
-      };
-      reader.readAsDataURL(blob);
-    }
-  }else{ //텍스트가 복사된 경우
-
   }
-
-}
+  // load image if there is a pasted image
+  if (blob !== null) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      console.log(event.target.result); // data url!
+      myimage.src = event.target.result;
+    };
+    reader.readAsDataURL(blob);
+  }
+  else
+  {
+    
+  }
+} 
 
 // 검색 추가 결과 보이기, 숨기기
 var visible = document.getElementById("result_visible");
