@@ -43,7 +43,7 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
   };
   $.ajax({
     method: "POST",
-    url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
+    url: "https://vision.googleapis.com/v1/images:annotate?key=API_KEY",
     contentType: "application/json",
     data: JSON.stringify(p),
     processData: false,
@@ -79,7 +79,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       ]};
       $.ajax({
         method: "POST",
-        url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
+        url: "https://vision.googleapis.com/v1/images:annotate?key=API_KEY",
         contentType: "application/json",
         data: JSON.stringify(p),
         processData: false,
