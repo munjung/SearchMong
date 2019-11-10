@@ -25,7 +25,7 @@ $('#btn_search').click(function(){
       data_type: 'html',
       error: function(request,status,error) {
         console.log(request.responseText)
-        alert('error!')
+        alert('이미지 주소가 너무 길어요ㅠㅠ');
       }
       }).done(function( data ) {
         data = data.toString();
