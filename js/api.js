@@ -1,12 +1,13 @@
 var myimage = document.getElementById("mimg");
-var popup = document.getElementById("myPopup");
+var textarea = document.getElementById("textarea");
+//var popup = document.getElementById("myPopup");
 
 // 0: image_search / 1: ocr_detect
 $('#btn_search').click(function(){
 
   if(is_ocr == 1){
-    
-    popup.classList.toggle("show");
+
+    //popup.classList.toggle("show");
     var image_url = myimage.src.toString();
     var image_type = findImageType(image_url);
 
@@ -26,11 +27,11 @@ $('#btn_search').click(function(){
       }).done(function( data ) {
         data = data.toString();
         console.log(data);
-        //copyValue(data)
+        copyValue(data)
       }
     )
   }else{
-
+    $('.research_result').css('display','none');
   }
 
 });
@@ -51,7 +52,10 @@ function copyValue(data){
     var copyText = document.getElementById("result_text");
     copyText.select();
     document.execCommand("copy");
-    alert("복사된 문자열: " + copyText.value);
+    alert('글자 추출 완료!');
+    console.log(copyText.value);
+    $('.research_result').css('display','');
+    $('#textarea').val(copyText.value);
 }
 
 function findImageType(image_url){
