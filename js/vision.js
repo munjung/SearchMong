@@ -170,11 +170,12 @@ function img_result_load(img_data){
     var image_name=img_data.documents[i].display_sitename;
     var image_link = img_data.documents[i].doc_url;
     var img_id="img_id"+i;
+    error_img = '/images/empty_image.png';
     //style="display:none" //style='display:none'
     str=str+
         "<div class='card_border'>"+
           "<div class='card' id='"+img_id+"'>"+
-            "<img class='card_img' src='"+image_src+"' onerror='this.src='/images/empty_image.png'' alt='Avatar'>"+
+            "<img class='card_img' src='"+image_src+"' onerror='this.src=error_img' alt='Avatar'>"+
             "<div class='container1'>"+
               "<h4><b>"+image_name+"</b></h4>"+
               "<div>"+image_date+"</div>"+
