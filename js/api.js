@@ -8,6 +8,7 @@ $('#btn_search').click(function(){
 
   if(is_ocr == 1){
 
+    openLoader();
     $('.card_border').css('display','none');
     $('.div_search').css('display','none');
 
@@ -26,6 +27,7 @@ $('#btn_search').click(function(){
       error: function(request,status,error) {
         console.log(request.responseText)
         alert('이미지 주소가 너무 길어요ㅠㅠ');
+        closeLoader();
       }
       }).done(function( data ) {
         data = data.toString();
@@ -53,6 +55,7 @@ function copyValue(data){
     }
     total = total.replace("\n","").replace(/'/g, "");
     alert('글자 추출 완료!');
+    closeLoader();
     document.getElementById("result_text").value = total;
     var copyText = document.getElementById("result_text");
     $('#textarea').val(copyText.value);

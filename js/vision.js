@@ -5,6 +5,13 @@ var add_result=document.getElementById("search_result_add");
 var btn_test = document.getElementById("btn_search_test");
 var result;
 var imgBase;
+var loader = $("div.loader");
+function closeLoader(){
+  loader.css("display","none");
+}
+function openLoader(){
+  loader.css("display","");
+}
 
 btn_search.addEventListener('click',function(){
   if(is_ocr == 0){
@@ -28,6 +35,7 @@ btn_search.addEventListener('click',function(){
   });
 
 function visionBase64(){ //이미지를 base64로 변환하여 보내는 경우
+  openLoader();
   var request, output;
 if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에만 실행
   var block = uploadImg.src.split(';');
@@ -43,7 +51,7 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
   };
   $.ajax({
     method: "POST",
-    url: "https://vision.googleapis.com/v1/images:annotate?key=API_KEY",
+    url: "https://vision.googleapis.com/v1/images:annotate?key=",
     contentType: "application/json",
     data: JSON.stringify(p),
     processData: false,
@@ -52,6 +60,7 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
   },
   error:function(){
     alert("올바른 이미지 정보가 아닙니다.");
+    closeLoader();
   }
   }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
     result = msg.responses[0].webDetection.webEntities[0].description;
@@ -67,6 +76,7 @@ else{
 }
 }
 function visionUrl(){// 이미지를 url 소스로 보내는 경우
+  openLoader();
   var request, output;
   var p = {
     "requests":[{
@@ -79,7 +89,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       ]};
       $.ajax({
         method: "POST",
-        url: "https://vision.googleapis.com/v1/images:annotate?key=API_KEY",
+        url: "https://vision.googleapis.com/v1/images:annotate?key=",
         contentType: "application/json",
         data: JSON.stringify(p),
         processData: false,
@@ -88,6 +98,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
     },
     error:function(){
       alert("이미지 전송 실패");
+      closeLoader();
     }
     }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
       var enttitiy = msg;
@@ -99,6 +110,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       }else{
         alert("이미지 정보가 검색되지 않습니다")
         console.log(msg);
+        closeLoader();
       }
 
     });
@@ -112,6 +124,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       }
     }
     add_result.innerHTML=add;
+    closeLoader();
   }
 //번역 하는 곳
 function papagoTranslate(result){

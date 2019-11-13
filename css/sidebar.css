@@ -180,9 +180,28 @@ body {
   width: 100%;
   background-color: grey;
 }
+.loader{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #ACD3F4;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
 
-/* #myBar2 {
-  width: 1%;
-  height: 30px;
-  background-color: green;
-} */
+
+@-webkit-keyframes spin {
+  0% {-webkit-trnasform: rotate(0deg);}
+  100% {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+  0% {transform: :rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
