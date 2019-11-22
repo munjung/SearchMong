@@ -10,7 +10,7 @@ $('#btn_search').click(function(){
 
     openLoader();
     $('.card_border').css('display','none');
-    $('.div_search').css('display','none');
+    //$('.div_search').css('display','none');
 
     var image_url = myimage.src.toString();
     var image_type = findImageType(image_url);
@@ -47,6 +47,7 @@ $('#btn_search').click(function(){
 function copyValue(data){
     data = data.replace("{","").replace("}","")
           .replace("}","").replace("{","").split(":")[2];
+    if(data!=null){
     data = data.replace("[","").replace("]","");
     var text = data.split(",");
     var total = '';
@@ -60,7 +61,11 @@ function copyValue(data){
     var copyText = document.getElementById("result_text");
     $('#textarea').val(copyText.value);
     $('.research_result').css('display','');
-
+  }else{
+    alert('글자를 추출하지 못했습니다...ㅠㅜ');
+    closeLoader();
+    $('.research_result').css('display','');
+  }
     // var copyText = document.getElementById("result_text");
     // copyText.select();
     // document.execCommand("copy");

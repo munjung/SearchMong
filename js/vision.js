@@ -51,7 +51,7 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
   };
   $.ajax({
     method: "POST",
-    url: "https://vision.googleapis.com/v1/images:annotate?key=",
+    url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
     contentType: "application/json",
     data: JSON.stringify(p),
     processData: false,
@@ -63,11 +63,16 @@ if(uploadImg.src!=null&uploadImg.src!=""){// 이미지가 들어있는 경우에
     closeLoader();
   }
   }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
-    result = msg.responses[0].webDetection.webEntities[0].description;
-    papagoTranslate(result)
-    add_result_entity(msg);
-    console.log(msg);
-    //imgname.value= result;
+    var enttitiy = msg.responses[0].webDetection.webEntities[0];
+    if(enttitiy!=null){
+      console.log(msg);
+      result = msg.responses[0].webDetection.webEntities[0].description;
+      papagoTranslate(result)
+      add_result_entity(msg);
+    }else{
+      alert("이미지 정보가 검색되지 않습니다")
+      console.log(msg);
+    }
   });
 }
 else{
@@ -89,7 +94,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       ]};
       $.ajax({
         method: "POST",
-        url: "https://vision.googleapis.com/v1/images:annotate?key=",
+        url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDChEF1yBG_NXEPii0_v4ksuQXbVxZpXuY",
         contentType: "application/json",
         data: JSON.stringify(p),
         processData: false,
@@ -101,7 +106,7 @@ function visionUrl(){// 이미지를 url 소스로 보내는 경우
       closeLoader();
     }
     }).done(function(msg) { //이미지 가져오지 못했을때 예외처리 필요
-      var enttitiy = msg;
+      var enttitiy = msg.responses[0].webDetection.webEntities[0];
       if(enttitiy=!null){
         console.log(msg);
         result = msg.responses[0].webDetection.webEntities[0].description;

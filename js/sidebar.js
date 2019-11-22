@@ -2,6 +2,8 @@ var myimage = document.getElementById("mimg");
 var upload = document.getElementById("upload");
 var is_ocr = 0;
 var btn_copy = document.getElementById("btn_copy");
+var imgname = document.getElementById("imgName");//텍스트 나오는 부분
+var add_result=document.getElementById("search_result_add");
 
 window.addEventListener('DOMContentLoaded', () => {
     // 처음 로딩 될 때: 메시지가 있는지 확인하고 삭제
@@ -20,6 +22,10 @@ window.addEventListener('DOMContentLoaded', () => {
         if (areaName === 'local' && 'message' in changes) {
             //var myimage = document.getElementById("mimg");
             myimage.src=changes.message.newValue;
+            imgname.value= " 키워드를 검색해보세요!";
+            imgresult.innerHTML="";
+            $('.research_result').css('display','none');
+            add_result.innerHTML="검색 버튼을 누른 후 관련 키워드를 확인해보세요!";
             //myimage.src = 'message';
         }
     });
@@ -31,10 +37,17 @@ $(function(){
   $('#checkbox[data-type=is_ocr]').on('click', function () {
     var checked = $('#checkbox').is(":checked");
     if(checked) {
+      $('#imgresult').css('display','none');
+      $('.keyword_result').css('display','none');
+      $('.plus').css('display','none');
       is_ocr = 1;
     }else {
       $('.div_search').css('display','');
       $('.research_result').css('display','none');
+      $('#imgresult').css('display','');
+      $('.keyword_result').css('display','');
+      $('.plus').css('display','');
+      imgname.value= " 키워드를 검색해보세요!";
       is_ocr = 0;
     }
   });
@@ -78,7 +91,9 @@ upload.addEventListener('change',function(e){
             이와 함께 base64 인코딩 된 스트링 데이터가 result 속성에 담겨진다.
         */
         reader.readAsDataURL(get_file[0]);
-        console.log(2);
+        imgname.value= " 키워드를 검색해보세요!";
+        imgresult.innerHTML="";
+        add_result.innerHTML="검색 버튼을 누른 후 관련 키워드를 확인해보세요!";
     }else{
       alert("이미지 파일만 업로드 가능합니다.");
       return false;
@@ -87,6 +102,7 @@ upload.addEventListener('change',function(e){
 })
 
 document.onpaste = function (event) {
+  imgname.value= "";
   // use event.originalEvent.clipboard for newer chrome versions
   var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
   console.log(JSON.stringify(items)); // will give you the mime types
@@ -105,6 +121,9 @@ document.onpaste = function (event) {
       myimage.src = event.target.result;
     };
     reader.readAsDataURL(blob);
+    imgname.value= " 키워드를 검색해보세요!";
+    imgresult.innerHTML="";
+    add_result.innerHTML="검색 버튼을 누른 후 관련 키워드를 확인해보세요!";
   }
   else
   {
